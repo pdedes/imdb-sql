@@ -65,5 +65,15 @@ Leap Noir
 	JOIN movies_genres ON movies.id = movies_genres.movie_id 
 	WHERE (movies.year % 4 = 0) AND movies_genres.genre = "Film-Noir";
 
+Degrees of Bacon
+	Current Best Guess... Returns Bacon's filmography. Maybe you can nest this as a table inside of another sql query that then JOINS the actors of these films to this result.
+
+	SELECT movies.name, movies.year FROM movies 
+	JOIN roles ON movies.id = roles.movie_id
+	JOIN actors ON roles.actor_id = actors.id
+	JOIN movies_genres ON movies.id = movies_genres.movie_id
+	WHERE actors.id = 22591 AND movies_genres.genre = "Drama"
+	ORDER BY movies.year DESC;
+
 
 
