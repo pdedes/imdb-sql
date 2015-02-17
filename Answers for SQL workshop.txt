@@ -1,0 +1,69 @@
+Answer Set for SQL Workshop;
+
+Prolific
+	SELECT actors.id, actors.first_name, actors.last_name, roles.actor_id, COUNT(roles.role) FROM actors 
+	JOIN roles ON actors.id = roles.actor_id 
+	GROUP BY actors.id 
+	ORDER BY COUNT(roles.role) DESC 
+	LIMIT 10;
+
+Fame Name Game
+	First Name...
+		SELECT actors.first_name, COUNT(actors.first_name) 
+		FROM actors 
+		GROUP BY actors.first_name ORDER BY COUNT(actors.first_name) DESC 
+		LIMIT 10;
+
+	Last Name...
+		SELECT actors.last_name, COUNT(actors.last_name) 
+		FROM actors 
+		GROUP BY actors.last_name ORDER BY COUNT(actors.last_name) DESC 
+		LIMIT 10;
+
+Car
+	>1,082 movies listed as containing the word 'car'
+	SELECT COUNT(NAME) FROM movies WHERE name LIKE "Car%";
+
+1985
+	>5,180 movies listed as released in 1982
+	SELECT COUNT(name) FROM movies WHERE year = 1985;
+
+1982
+	>4,597 movies listed as released in 1982
+	SELECT COUNT(name) FROM movies WHERE year = 1982;  ...OR...
+	SELECT COUNT(id) FROM movies WHERE year = 1982;
+
+Stacktor
+	SELECT id, first_name, last_name, gender FROM actors WHERE last_name LIKE "%stack%";
+
+Bottom of the Barrel
+	Current Best guess (All numbers are slightly off but almost in the correct order)...
+		SELECT movies_genres.genre, COUNT(movies_genres.genre) 
+		FROM movies 
+		JOIN movies_genres ON movies.id = movies_genres.movie_id 
+		GROUP BY movies_genres.genre 
+		ORDER BY COUNT(movies_genres.genre) ASC 
+		LIMIT 100;
+
+		...Can't yet locate the problem...
+
+Braveheart
+	SELECT actors.first_name, actors.last_name 
+	FROM actors 
+	JOIN roles ON actors.id = roles.actor_id 
+	JOIN movies ON roles.movie_id = movies.id 
+	WHERE movies.name = "Braveheart" 
+	ORDER BY actors.last_name ASC;
+
+	Note: Some slight differences with the given answer set. May be related to the fact that "Braveheart" occupies two movie id codes.
+
+Leap Noir
+	SELECT directors.first_name, directors.last_name, movies.name, movies.year 
+	FROM directors 
+	JOIN movies_directors ON directors.id = movies_directors.director_id 
+	JOIN movies ON movies_directors.movie_id = movies.id 
+	JOIN movies_genres ON movies.id = movies_genres.movie_id 
+	WHERE (movies.year % 4 = 0) AND movies_genres.genre = "Film-Noir";
+
+
+
